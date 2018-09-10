@@ -1,30 +1,28 @@
 version: '3'
 services:
     flaskapp:
-        build: ./flaskapp
-        image: flaskapp
+        image: markgowans/flaskapp
         networks:
-            - "app"
-        command: python app.py
+            - app
+        command: python myproject.py
         deploy:
             replicas: 3
 
     proxy:
-        build: ./proxy
-        image: proxy
+        image: markgowans/proxy
         ports:
-            - "8888:80"
+            - 8888:80
         networks:
-            - "app"
+            - app
         depends_on:
-            - "flaskapp"
+            - flaskapp
         deploy:
             replicas: 1
 
     redis:
         image: redis
         networks:
-            - "app"
+            - app
         deploy:
             replicas: 1
 networks:

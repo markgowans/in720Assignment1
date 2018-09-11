@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
     flaskapp:
         image: markgowans/flaskapp
@@ -9,7 +9,7 @@ services:
             replicas: 3
 
     proxy:
-        image: markgowans/proxy
+        image: markgowans/nginx
         ports:
             - 8888:80
         networks:
